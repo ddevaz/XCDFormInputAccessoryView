@@ -28,6 +28,12 @@ static NSArray * EditableTextInputsInView(UIView *view)
 	return textInputs;
 }
 
+@interface XCDFormInputAccessoryView()
+
+@property (nonatomic, copy) void (^completionBlock)(void);
+
+@end
+
 @implementation XCDFormInputAccessoryView
 {
 	UIToolbar *_toolbar;
@@ -67,6 +73,13 @@ static NSArray * EditableTextInputsInView(UIView *view)
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textInputDidBeginEditing:) name:UITextViewTextDidBeginEditingNotification object:nil];
 	
 	return self;
+}
+
+- (id) initWithResponders:(NSArray *)responders completion:(void(^)())completionBlock
+{
+	self.completionBlock = completionBlock;
+	self = [self initWithResponders:responders];
+    return self;
 }
 
 - (void) dealloc
@@ -161,6 +174,8 @@ static NSArray * EditableTextInputsInView(UIView *view)
 - (void) done
 {
 	[[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+
+    if (self.completionBlock) self.completionBlock();
 }
 
 @end

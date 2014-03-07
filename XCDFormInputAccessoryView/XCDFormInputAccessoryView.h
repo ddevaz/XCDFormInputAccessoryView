@@ -11,10 +11,14 @@
 
 - (id) initWithResponders:(NSArray *)responders; // Objects must be UIResponder instances
 
+- (id) initWithResponders:(NSArray *)responders completion:(void(^)())completionBlock;
+
 @property (nonatomic, strong) NSArray *responders;
 
 @property (nonatomic, assign) BOOL hasDoneButton; // Defaults to YES on iPhone, NO on iPad
 
 - (void) setHasDoneButton:(BOOL)hasDoneButton animated:(BOOL)animated;
+
+
 
 @end

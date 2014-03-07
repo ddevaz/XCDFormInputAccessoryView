@@ -64,7 +64,9 @@
 {
 	if (!_inputAccessoryView)
 	{
-		_inputAccessoryView = [[XCDFormInputAccessoryView alloc] initWithResponders:self.textInputs];
+		_inputAccessoryView = [[XCDFormInputAccessoryView alloc] initWithResponders:self.textInputs completion:^{
+            NSLog(@"TEEEEST");
+        }];
 		//_inputAccessoryView = [[XCDFormInputAccessoryView alloc] init];
 		//_inputAccessoryView = [[NSClassFromString(@"UIWebFormAccessory") alloc] init];
 	}
