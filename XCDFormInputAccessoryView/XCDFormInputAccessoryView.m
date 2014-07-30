@@ -52,13 +52,10 @@ static NSArray * EditableTextInputsInView(UIView *view)
 	_responders = responders;
 	
 	_toolbar = [[UIToolbar alloc] init];
-	_toolbar.tintColor = nil;
-	_toolbar.barStyle = UIBarStyleBlack;
 	_toolbar.translucent = YES;
 	_toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[ UIKitLocalizedString(@"Previous"), UIKitLocalizedString(@"Next") ]];
 	[segmentedControl addTarget:self action:@selector(selectAdjacentResponder:) forControlEvents:UIControlEventValueChanged];
-	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	segmentedControl.momentary = YES;
 	UIBarButtonItem *segmentedControlBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:segmentedControl];
 	UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
